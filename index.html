@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibukun Olumodeji — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF1EF;
+    --paper-line:#C9D3D1;
+    --ink:#1E2A2C;
+    --ink-soft:#4B5E5F;
+    --amber:#C97F2E;
+    --teal:#1F6E68;
+    --card-bg:#F7F8F6;
+    --max-w:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0/100% 32px,
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px) 0 0/32px 100%,
+      var(--paper);
+    background-blend-mode:normal;
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:var(--paper);
+    opacity:.72;
+    z-index:-1;
+    pointer-events:none;
+  }
+  a{color:var(--teal);}
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .hairline{border:none;border-top:1px solid var(--paper-line);margin:0;}
+
+  /* NAV */
+  nav.wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:22px;padding-bottom:22px;
+  }
+  nav .brand{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.06em;}
+  nav .links{display:flex;gap:22px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;}
+  nav .links a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;}
+  nav .links a:hover{border-bottom-color:var(--amber);}
+
+  /* HERO */
+  header.hero{padding:56px 0 40px;}
+  .hero .label{margin-bottom:18px;}
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:500;
+    font-size:clamp(38px, 6vw, 64px);
+    line-height:1.05;
+    margin:0 0 20px;
+    max-width:14ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--teal);}
+  .hero p.lede{
+    font-size:18px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 30px;
+  }
+  .hero-top{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap;}
+  .hero-photo{
+    width:104px;height:104px;flex:0 0 auto;
+    border:1px solid var(--ink);
+    background:var(--card-bg);
+    padding:5px;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(35%);}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:44px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding:11px 18px;
+    border:1px solid var(--ink);
+    text-decoration:none;color:var(--ink);
+    transition:background .18s ease, color .18s ease;
+  }
+  .btn.primary{background:var(--ink);color:var(--paper);}
+  .btn:hover{background:var(--amber);border-color:var(--amber);color:#fff;}
+
+  /* SCOPE TRACE */
+  .scope{
+    width:100%;
+    height:110px;
+    border:1px solid var(--paper-line);
+    background:var(--card-bg);
+    position:relative;
+    overflow:hidden;
+  }
+  .scope svg{width:100%;height:100%;display:block;}
+  .scope-tag{
+    position:absolute; top:8px; left:12px;
+    font-family:'IBM Plex Mono',monospace; font-size:10px;
+    letter-spacing:.1em; color:var(--ink-soft); text-transform:uppercase;
+  }
+  .trace-path{
+    fill:none;
+    stroke:var(--teal);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.4s ease-out forwards .3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion: reduce){
+    .trace-path{ animation:none; stroke-dashoffset:0; }
+  }
+
+  section{padding:56px 0;}
+  section > .label{margin-bottom:10px;}
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:28px;
+    margin:0 0 28px;
+  }
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;}
+  .about-grid p{line-height:1.7;color:var(--ink-soft);margin:0 0 14px;font-size:15.5px;}
+  .readout{
+    border:1px solid var(--paper-line);
+    background:var(--card-bg);
+    padding:20px 22px;
+  }
+  .readout .label{margin-bottom:14px;}
+  .readout ul{list-style:none;margin:0;padding:0;}
+  .readout li{
+    display:flex;justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding:8px 0;border-bottom:1px dashed var(--paper-line);
+  }
+  .readout li:last-child{border-bottom:none;}
+  .readout li span:last-child{color:var(--ink-soft);}
+
+  /* PROJECTS - LOG BOOK */
+  .log{border-top:1px solid var(--ink);}
+  .entry{
+    display:grid;
+    grid-template-columns:64px 1fr auto;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid var(--paper-line);
+    align-items:start;
+  }
+  .entry .id{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--amber);font-weight:600;
+    padding-top:3px;
+  }
+  .entry h3{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:19px;margin:0 0 6px;
+  }
+  .entry p{margin:0 0 8px;color:var(--ink-soft);font-size:14.5px;line-height:1.55;max-width:56ch;}
+  .entry .stack{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--teal);
+  }
+  .entry .go{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    text-decoration:none;color:var(--ink);
+    white-space:nowrap;padding-top:4px;
+    border-bottom:1px solid var(--ink);
+  }
+  .entry .go:hover{color:var(--amber);border-color:var(--amber);}
+
+  /* CREDENTIALS */
+  .cred-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .cred-card{
+    flex:1 1 220px;
+    border:1px solid var(--paper-line);
+    background:var(--card-bg);
+    padding:20px;
+  }
+  .cred-card .label{margin-bottom:8px;}
+  .cred-card a{font-family:'IBM Plex Mono',monospace;font-size:14px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);}
+  .cred-card a:hover{color:var(--amber);border-color:var(--amber);}
+  .cred-card p{margin:8px 0 0;color:var(--ink-soft);font-size:13.5px;line-height:1.5;}
+
+  /* FOOTER / CONTACT */
+  footer{padding:50px 0 60px;}
+  footer h2{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:30px;margin:0 0 14px;
+  }
+  footer p{color:var(--ink-soft);max-width:48ch;line-height:1.6;margin:0 0 26px;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
+    flex-wrap:wrap;gap:10px;padding-top:24px;
+  }
+
+  @media (max-width: 720px){
+    .about-grid{grid-template-columns:1fr;}
+    .entry{grid-template-columns:40px 1fr;}
+    .entry .go{grid-column:2/3;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="wrap">
+  <div class="brand">IBUKUN OLUMODEJI</div>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+<hr class="hairline">
+
+<header class="hero wrap">
+  <div class="hero-top">
+    <div class="hero-photo">
+      <img src="https://avatars.githubusercontent.com/u/87123618?v=4" alt="Ibukun Olumodeji">
+    </div>
+    <div>
+      <div class="label">Sample 003 · Field: Applied AI</div>
+      <h1>Turning raw signal into <em>readable insight.</em></h1>
+    </div>
+  </div>
+  <p class="lede" style="margin-top:24px;">Physicist → data analyst → data scientist → AI. Each move kept the same instinct: measure carefully, question the data, and build something people can actually use — now with SQL, Python, Power BI, and applied AI/ML.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="#work">View the work log</a>
+    <a class="btn" href="https://github.com/olumobigjoe" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn" href="https://www.linkedin.com/in/ibukun-olumodeji-a94384103" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+
+  <div class="scope">
+    <div class="scope-tag">Ch.1 — Signal → Insight</div>
+    <svg viewBox="0 0 800 110" preserveAspectRatio="none">
+      <path class="trace-path" d="M0,70 L60,70 L80,30 L100,90 L120,50 L140,70 L200,70 L220,20 L240,95 L260,45 L280,70 L340,70 L360,60 L380,80 L400,55 L420,70 L480,70 L500,25 L520,90 L540,40 L560,70 L620,70 L640,58 L660,82 L680,52 L700,70 L800,70" />
+    </svg>
+  </div>
+</header>
+
+<section id="about">
+  <hr class="hairline">
+  <div class="wrap" style="padding-top:48px;">
+    <div class="label">01 — About</div>
+    <h2 class="section-title">From lab bench to dashboard</h2>
+    <div class="about-grid">
+      <div>
+        <p>My background is in physics — trained to measure carefully, question assumptions, and let the data settle the argument. That habit of mind carried straight through three moves: data analyst, then data scientist, and now applied AI.</p>
+        <p>Each stage built on the last. As an analyst I learned to clean, model, and report on data in SQL, Python, Excel, and Power BI. As a data scientist I moved from describing what happened to modelling what's likely to happen next. Now I'm focused on applied AI — building on that same analytical foundation to ship AI-powered tools rather than just insight.</p>
+      </div>
+      <div class="readout">
+        <div class="label">Instrument panel</div>
+        <ul>
+          <li><span>Now</span><span>Applied AI</span></li>
+          <li><span>Before that</span><span>Data Science</span></li>
+          <li><span>Before that</span><span>Data Analysis</span></li>
+          <li><span>AI tools</span><span>LLMs · Prompting</span></li>
+          <li><span>Core tools</span><span>SQL · Python</span></li>
+          <li><span>Reporting</span><span>Excel · Power BI</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <hr class="hairline">
+  <div class="wrap" style="padding-top:48px;">
+    <div class="label">02 — Work log</div>
+    <h2 class="section-title">Recent entries</h2>
+
+    <div class="label" style="margin-top:6px;color:var(--amber);">Apps</div>
+    <div class="log">
+      <div class="entry">
+        <div class="id">001</div>
+        <div>
+          <h3>Pregnancy prediction app</h3>
+          <p>A prediction tool built for patients undergoing assisted reproduction treatment, aimed at giving them a clearer, data-informed sense of likely outcomes.</p>
+          <div class="stack">HTML</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/Pregnancy-Prediction-App" target="_blank" rel="noopener">View →</a>
+      </div>
+
+      <div class="entry">
+        <div class="id">002</div>
+        <div>
+          <h3>Virtual electronics &amp; physics lab platform</h3>
+          <p>An interactive Streamlit platform running four HND-level electronics practicals — diode characteristics, rectification, voltage regulation, and transistor curves — with live simulations, auto-graded assessments, and a student performance dashboard.</p>
+          <div class="stack">Python · Streamlit · Plotly</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/Unified-Electronics-Practicals" target="_blank" rel="noopener">View →</a>
+      </div>
+    </div>
+
+    <div class="label" style="margin-top:36px;color:var(--teal);">AI works</div>
+    <div class="log">
+      <div class="entry">
+        <div class="id">003</div>
+        <div>
+          <h3>Voice-powered gate vehicle logging system</h3>
+          <p>A fully offline gate-logging tool for security staff: a guard speaks a vehicle's details, the system transcribes the audio and runs it through a locally-hosted LLM (Ollama) to extract structured fields — plate number, type, colour, model — before logging check-in and check-out.</p>
+          <div class="stack">Python · Streamlit · Local LLM (Ollama) · Speech Recognition</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/Voice-Powered-Gate-Vehicle-Logging-System" target="_blank" rel="noopener">View →</a>
+      </div>
+    </div>
+
+    <div class="label" style="margin-top:36px;">Analyst work</div>
+    <div class="log">
+      <div class="entry">
+        <div class="id">004</div>
+        <div>
+          <h3>Furniture sales analysis</h3>
+          <p>A deep-dive into four years of sales data for a furniture retailer — pricing, discounting, shipping, and customer profitability — that surfaced a costly discounting pattern and translated it into a set of prioritised recommendations.</p>
+          <div class="stack">Python · Pandas</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/SALES-ANALYSIS" target="_blank" rel="noopener">View →</a>
+      </div>
+
+      <div class="entry">
+        <div class="id">005</div>
+        <div>
+          <h3>Logistics performance report, 2020–2024</h3>
+          <p>A three-page Power BI report tracking key logistics metrics over four years, built to give decision-makers a clear view of performance trends at a glance.</p>
+          <div class="stack">Power BI</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/Logistics-Report_2020_to_2024_using_POWER_BI" target="_blank" rel="noopener">View →</a>
+      </div>
+
+      <div class="entry">
+        <div class="id">006</div>
+        <div>
+          <h3>E-commerce database design &amp; implementation</h3>
+          <p>Designed and built the relational database behind an online store — customers, products, orders, suppliers, and stock levels — as a single well-structured system.</p>
+          <div class="stack">T-SQL</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/E_Commerce-Database-Design-and-Implementation" target="_blank" rel="noopener">View →</a>
+      </div>
+
+      <div class="entry">
+        <div class="id">007</div>
+        <div>
+          <h3>Weather analysis in Python</h3>
+          <p>Descriptive statistics on a weather dataset, worked through in Google Colab — the kind of exploratory pass that turns raw readings into a readable story.</p>
+          <div class="stack">Python · Jupyter</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/Weather_Analysis_using_Python" target="_blank" rel="noopener">View →</a>
+      </div>
+
+      <div class="entry">
+        <div class="id">008</div>
+        <div>
+          <h3>Test scores documentation &amp; analysis</h3>
+          <p>Recorded and analysed results from an online test to give a detailed picture of participant performance.</p>
+          <div class="stack">HTML</div>
+        </div>
+        <a class="go" href="https://github.com/olumobigjoe/TEST-SCORES-DOCUMENTATION-AND-ANALYSIS" target="_blank" rel="noopener">View →</a>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;"><a class="btn" href="https://github.com/olumobigjoe?tab=repositories" target="_blank" rel="noopener">See all repositories ↗</a></p>
+  </div>
+</section>
+
+<section id="credentials">
+  <hr class="hairline">
+  <div class="wrap" style="padding-top:48px;">
+    <div class="label">03 — Credentials</div>
+    <h2 class="section-title">Where else to verify the work</h2>
+    <div class="cred-row">
+      <div class="cred-card">
+        <div class="label">Code</div>
+        <a href="https://github.com/olumobigjoe" target="_blank" rel="noopener">github.com/olumobigjoe</a>
+        <p>27 repositories covering analytics, databases, and small applied projects.</p>
+      </div>
+      <div class="cred-card">
+        <div class="label">Professional</div>
+        <a href="https://www.linkedin.com/in/ibukun-olumodeji-a94384103" target="_blank" rel="noopener">LinkedIn profile</a>
+        <p>Full work history, experience, and recommendations.</p>
+      </div>
+      <div class="cred-card">
+        <div class="label">Certifications</div>
+        <a href="https://www.credly.com/users/ibukun-olumodeji" target="_blank" rel="noopener">Credly badges</a>
+        <p>Verified certificates and completed learning badges.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <hr class="hairline">
+  <div class="wrap" style="padding-top:48px;">
+    <div class="label">04 — Contact</div>
+    <h2>Let's talk data</h2>
+    <p>Open to analyst, BI, and data engineering opportunities — and always happy to compare notes with fellow physicists-turned-analysts. Reach out on LinkedIn or take a look through the code on GitHub.</p>
+    <div class="cta-row" style="margin-bottom:0;">
+      <a class="btn primary" href="https://www.linkedin.com/in/ibukun-olumodeji-a94384103" target="_blank" rel="noopener">Message on LinkedIn</a>
+      <a class="btn" href="https://github.com/olumobigjoe" target="_blank" rel="noopener">Browse GitHub ↗</a>
+    </div>
+    <div class="foot-bottom">
+      <span>Ibukun Olumodeji — Data Analyst</span>
+      <span>Last calibrated 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
